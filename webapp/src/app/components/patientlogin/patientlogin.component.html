@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <form [formGroup]="otploginForm" class="form-container form">
+      <mat-card class="border">
+        <div style="text-align: center;">
+          <mat-card-title class="title">Patient Login with OTP</mat-card-title>
+        </div>
+        <mat-card-content style="margin-top: 20px;">
+          <div>
+            <mat-form-field style="width: 69%;" appearance='fill'>
+              <mat-label>Enter mail to send OTP</mat-label>
+              <input matInput placeholder="abc@email.com" formControlName="email" required>
+              <mat-error *ngIf="email.dirty && email.invalid">Valid Email is required.</mat-error>
+            </mat-form-field>
+            <button type="button" mat-button class="otp-bt bt-border" (click)="sendOtp()">send otp</button>
+          </div>
+          <div *ngIf="otpmessage">
+            <h5 class="alert-green">OTP sent to mail</h5>
+          </div>
+
+
+          <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter OTP sent to mail</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="otp">
+              <mat-error *ngIf="otp.dirty && otp.invalid">Enter valid OTP</mat-error>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <button type="button" mat-button class="otp-bt bt-border" (click)="verifyOtp()">verify otp</button>
+          </div>
+          <div *ngIf="otpVerified">
+            <h5 class="alert-green">OTP verified, Login now.</h5>
+          </div>
+          <div *ngIf="otpinvalid">
+            <h5 class="alert-red">OTP invalid, enter valid otp!</h5>
+          </div>
+
+
+          <div style="text-align: center; ">
+            <button type="button" style="margin-top: 5px;" mat-raised-button class="color"
+              (click)="onSubmitLogin()">Login</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</div>

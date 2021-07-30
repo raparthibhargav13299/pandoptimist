@@ -1,0 +1,21 @@
+.full-width{
+    width: 100%;
+}
+
+.form-container{
+    margin-top: 10px; 
+   align-items: center;
+   border-radius: 3px;
+   box-shadow: 0 14px 20px -6px rgba(20,160,157,0.85);
+   justify-content: center;
+  
+}
+.mat-error {
+    font-size: 10px;
+}
+   
+.example-card {
+    max-width: 800px;
+    height:200px;
+    box-shadow: 0 14px 20px -6px rgba(20,160,157,0.85);
+  }

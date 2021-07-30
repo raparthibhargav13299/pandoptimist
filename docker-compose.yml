@@ -1,0 +1,191 @@
+version: '2'
+services:
+  #  spring-cloud-gateway:
+  #    build: spring-cloud-gateway/
+  #    container_name: spring-cloud-gateway
+  #    restart: always
+  #    network_mode: "host"
+  #    hostname: localhost
+  #    ports:
+  #      - 8080:8080
+
+  webapp:
+    build: webapp/
+    image: webapp
+    restart: always
+    container_name: webapp
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - "4200:4200"
+
+  eureka-server:
+    build: eureka-server/
+    container_name: eureka-server
+    restart: always
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8761:8761
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+#    network_mode: "host"
+    hostname: localhost
+    volumes:
+      - ./mongodb_data_container:/data/db
+    ports:
+      - 27017:27017
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    restart: always
+#    network_mode: "host"
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: user
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - ./mysql_data_container:/data/db
+    ports:
+      - 3306:3306
+
+  neo4j:
+    image: neo4j:4.2.3
+    container_name: neo4j
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - ./data/neo4j-data/data:/data
+
+  database_redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+        - 6379:6379
+
+  rabbitmq:
+    image: rabbitmq:3.7.5-management
+    hostname: localhost
+    ports:
+      - 5672:5672
+      - 15672:15672
+    #    volumes:
+    #      - ./data/rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@app-rabbitmq:cached
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST:
+
+  user-management-service:
+    build: user-management-service/
+    container_name: user-management-service
+    restart: always
+    depends_on:
+      - mysql
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8089:8089
+
+  otp-service:
+    build: otp-service/
+    container_name: otp-service
+    restart: always
+    depends_on:
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8081:8081
+
+  doctor-service:
+    build: doctor-consultation-service/
+    container_name: doctor-consultation-service
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8082:8082
+
+  donor-service:
+    build: donor-service/
+    container_name: donor-service
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8083:8083
+
+  medical-service:
+    build: medical-request-service/
+    container_name: medical-request-service
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 9091:9091
+
+  chat-service:
+    build: chat-service/
+    container_name: chat-service
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8095:8095
+
+  volunteer-service:
+    build: volunteer-service/
+    container_name: volunteer-service
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8084:8084
+
+  patient-service:
+    build: patient-service/
+    container_name: patient-service
+    restart: always
+    depends_on:
+      - mongo
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8085:8085
+
+  graph-service:
+    build: graph-service/
+    container_name: graph-service
+    restart: always
+    depends_on:
+      - neo4j
+      - rabbitmq
+#    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8086:8086

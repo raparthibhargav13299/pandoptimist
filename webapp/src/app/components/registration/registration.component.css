@@ -1,0 +1,29 @@
+
+
+.border{
+    border: 5px solid #14A09D;
+    border-radius: 8px;
+    padding: 20px 5px 20px 5px;
+}
+
+.color{
+    background-color: rgba(20,160,157,0.85);
+}
+
+
+
+.container{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+.form{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.title{
+    text-decoration-line: underline;
+    text-align: center;
+}

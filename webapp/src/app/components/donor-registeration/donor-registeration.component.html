@@ -1,0 +1,103 @@
+<div class="container">
+    <form [formGroup]="donorform" (ngSubmit)="DonorRegister()" class="form-container" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Donar Registration Form</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="name" matInput placeholder="Enter the full name">
+                        </mat-form-field>
+                        <mat-error *ngIf="name.invalid && name.touched">
+                            {{errors.name}}
+                        </mat-error>
+                    </div>
+                    </div>
+               
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            
+                            <textarea formControlName="age" matInput placeholder="Enter age"></textarea>
+                        </mat-form-field>
+                        <mat-error *ngIf="age.invalid && age.touched">
+                            {{errors.age}}
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="full-width">
+                            <textarea formControlName="phoneNumber" matInput placeholder="Mobile number"></textarea>
+                        </mat-form-field>
+                        <mat-error *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                            {{errors.phoneNumber}}
+                        </mat-error>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="full-width">
+                            <textarea formControlName="city" matInput placeholder="Enter the city"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Blood Group</mat-label>
+                            <mat-select formControlName="bloodGroup">
+                              <mat-option *ngFor="let blood of bloodGroups" [value]="blood.bloodType">
+                                {{blood.bloodName}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="full-width">
+                            <textarea formControlName="emailId" matInput placeholder="Email"
+                                [(ngModel)]="myemail.mail"></textarea>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" class="btn btn-block btn-outline-danger" (click)="getOtp()"
+                            value="GET OTP">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="full-width">
+                            <textarea formControlName="otp" matInput placeholder="otp"
+                                [(ngModel)]="otpNumber"></textarea>
+
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="button" class="btn btn-block btn-outline-success" (click)="verifyOtp()"
+                            value="verify">
+                    </div>
+
+                </div>
+            
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+</div>

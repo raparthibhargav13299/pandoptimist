@@ -1,0 +1,30 @@
+.example-card {
+  max-width: 360px;
+  width: 240px;
+  min-width: 200px;
+}
+
+.example-card:hover{
+  box-shadow: 0 2.5px 10px 2.5px rgba(20, 160, 157, 0.85);
+}
+
+.mat-card-header .mat-card-title {
+  margin-bottom: 2px;
+}
+  
+  .surgeon {
+    margin-top: 5px;
+    height: 210px;
+    justify-content: center;
+  }
+
+  .dot{
+    color: green;
+    margin-left: 3px;
+  }
+
+.connect-bt{
+  background-color: green;
+  color: whitesmoke;
+  width: 100%;
+}

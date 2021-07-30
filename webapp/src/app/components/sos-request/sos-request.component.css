@@ -1,0 +1,54 @@
+
+.container{
+    margin: auto;
+    margin-top: 2em;
+    width: 350px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.example-card {
+    max-width: 400px;
+    border-radius: 3px;
+    box-shadow: 0 14px 20px -6px rgba(20, 160, 157, 0.85);
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+ .Notetitle{
+     font-size: x-large;
+     font-weight: bolder;
+ }
+
+ .cardText{
+    font-size: medium;
+    font-weight: initial;
+    text-align: center;
+ }
+
+ .cardContainer{
+     display: flex;
+     flex-direction: row;
+     margin-top: 2em;
+     justify-content: space-around;
+ }
+ .alert-success{
+   width: 300px;
+ /* margin-left: 54px; */
+ margin: auto;
+ }  

@@ -1,0 +1,92 @@
+<div class="container">
+
+
+
+    <form [formGroup]="volunteerform" (ngSubmit)="VolunteerRegister()" class="form-container">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Volunteer Information</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="volunteer_name" matInput placeholder="Full Name">
+                            <mat-error *ngIf="volunteer_name.invalid && volunteer_name.touched">
+                                {{errors.volunteer_name}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="volunteer_mobileNumber" matInput placeholder="Phone Number">
+                            <mat-error *ngIf="volunteer_mobileNumber.invalid && volunteer_mobileNumber.touched">
+                                {{errors.volunteer_mobileNumber}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="full-width">
+                            <textarea formControlName="volunteer_email" matInput placeholder="Email Id" [(ngModel)]="myemail.mail"></textarea>
+                            <mat-error *ngIf="volunteer_email.invalid && volunteer_email.touched">
+                                {{errors.volunteer_email}}
+                            </mat-error>
+                        </mat-form-field>
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" class="btn btn-block btn-outline-danger" (click)="getOtp()" value="GET OTP">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <mat-form-field class="full-width">
+                            <textarea formControlName="otp" matInput placeholder="OTP" [(ngModel)]="otpNumber"></textarea>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="button" class="btn btn-block btn-outline-danger" (click)="verifyOtp()" value="verify">
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-ms-6 mb-3 mr-3">
+
+                        <input type="file" (change)="onFileChanged($event)" formControlName="filepath">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <input type="button" (click)="onUpload()" value="upload">
+
+                    </div>
+
+                </div>
+            </mat-card-content>
+            <div class="row" *ngIf="showMsg">
+                <div class="col-xs-12">
+                    <p class="alert alert-success">
+                        <strong>Registration Success!</strong> Please click here to login!.
+
+                    </p>
+                </div>
+            </div>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+</div>

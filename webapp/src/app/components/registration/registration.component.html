@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <form [formGroup]="registerForm" class="form-container">
+      <mat-card class="border form">
+        <div>
+          <mat-card-title class="title">Register</mat-card-title>
+        </div>
+        <mat-card-content>
+          <div class="row">
+            <mat-form-field style="width:300px;" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="abc@email.com" formControlName="email" required>
+              <mat-error *ngIf="email.dirty && email.invalid">Valid Email is required.</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field style="width:300px;" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+              <mat-error *ngIf="password.dirty && password.invalid">Atleast 8 characters are required</mat-error>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <button type="button" style="margin-top: 5px;" mat-raised-button class="color"
+            (click)="onSubmit()">Register</button>
+          <p style="font-size: 2ex; margin-top: 5px;">Already registered? goto <a routerLink="/login">Login</a></p>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            <strong>Successfully registered.<br></strong>
+            Redirecting to login...
+          </div>
+          <div *ngIf="invalidform" class="alert alert-danger" role="alert">
+            <strong>Enter valid credentials!<br></strong>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</div>

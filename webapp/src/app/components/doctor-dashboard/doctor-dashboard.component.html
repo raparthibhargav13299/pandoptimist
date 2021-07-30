@@ -1,0 +1,153 @@
+<div id="sect1" class="page-wrapper  p-t-100 p-b-50"  >
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <div class="title">
+                    <p> <em>Thank you for being the dedicated, thoughtful, and compassionate doctor !</em></p>
+                    <p>
+                        <em>You always go above and beyond and work tirelessly towards a healthy outcome</em></p>
+                    <p>
+                        <em> We feel so blessed to know you and have you as our doctor</em>
+                    </p>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="!condition;">
+                <form (ngSubmit)="onSubmit()" [formGroup]="healthTipsForm">
+                    <div class="form-row">
+                        <div class="name">Full name</div>
+                        <div class="value">
+                            <input class="input--style-6" formControlName="name" type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Specialist</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input class="input--style-6" formControlName="specialist" type="text" placeholder="General Physicians/Others">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Advice On </div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input class="input--style-6" formControlName="adviceOn" type="text" placeholder="Health/Diet/Stress/Others">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Valuable Advice</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <ckeditor formControlName="tips" [editor]="Editor " name="tips " type="text">
+                                </ckeditor>
+                                <!-- <textarea class="textarea--style-6 " name="message " placeholder="Advices "></textarea> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <div>
+                            <button class="btn btn--radius-2 btn--blue-2 " type="reset " (click)="reset() ">Reset</button>
+                            <button class="btn btn--radius-2 btn--blue-2 " type="submit ">Submit</button>
+
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                    
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="mt-3" style="justify-content: center;" *ngIf="condition;">
+                <mat-card class="example-card">
+                  <mat-card-content style="margin-top: 30px;">
+                    <h3 style="color:green">Your request is sent Sucessfully.Your Requirment will be Proceed Soon .Stay Safe</h3>
+                  </mat-card-content>
+                </mat-card>
+          
+              </div>
+
+            <div class="card-footer ">
+                <button class="btn btn--radius-2 btn--green-2 " (click)="makeMeOnline()">Make Me Online</button>
+                <button class="btn btn--radius-2 btn--red-2 " (click)="loggingOff()" >Logging Off</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Chat bot for Doctor -->
+
+<div>
+
+    <div>
+        <!-- <div class="card my-4 mx-4" style="width: 370px;">
+            <div class="card-header">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item mr-2" *ngIf="!connected">
+                        <input id="message1" name="message" type="text" [(ngModel)]="message.username" placeholder="Insert your usernmae..." class="form-control">
+                    </li>
+                    <li class="nav-item mr-2" *ngIf="!connected">
+                        <input id="message2" name="message" type="text" [(ngModel)]="messageto" placeholder="Insert your usernmae..." class="form-control">
+                    </li>
+                    <li class="nav-item mr-2" *ngIf="!connected">
+                        <button [disabled]="!message.username" class="btn btn-success" (click)="connect()">Connect</button>
+                    </li>
+                    <li class="nav-item" *ngIf="connected">
+                        <button class="btn btn-warning" (click)="disconnect()">Disconnect</button>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row container d-flex justify-content-center">
+                    <div class="col-md-4">
+                        <div class="box box-warning direct-chat direct-chat-warning">
+                            <div class="box-header with-border fullborder">
+                                <h3 class="box-title"><button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts"> <i class="fa fa-comments"></i></button>Chat Message</h3>
+                                <div class="box-tools pull-right">
+                                    <div class="box-tools pull-right"> <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i> </button> </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="direct-chat-messages">
+                                        <div >
+                                            <div class="direct-chat-msg" *ngFor="let m of messages">
+                                                <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">{{m.username}}</span> <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                                    alt="message user image">
+                                                <div class="direct-chat-text">
+                                                    <span *ngIf="m.type == 'MESSAGE'" [ngStyle]="{'color': m.color}"> </span> {{m.message}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer" >
+                                    <form action="#" method="post">
+                                        <div class="input-group">
+                                            <input name="message" autocomplete="off" type="text" [(ngModel)]="messgaeTyped" placeholder="Type Message ..." class="form-control">
+                                            <span class="input-group-btn"> 
+                            <button type="button" class="btn btn-warning btn-flat" [disabled]="!messgaeTyped" (click)="send()">Send</button> 
+                        </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

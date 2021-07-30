@@ -1,0 +1,26 @@
+.example-card{
+    max-width: 230px;
+    border-radius: 5px;
+    box-shadow: 0 14px 20px -6px rgba(20, 160, 157, 0.85);
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+.sos-bt{
+    padding: 20px 30px 20px;
+}
+.homesvg{
+    width: 557px;
+height: 560px;
+margin-left: 98px;
+}
+
+.row{
+    --bs-gutter-x: 1.5rem;
+}
+
+
+.example-header-image{
+    background-image: url('/assets/surgeon.svg');
+    background-size: cover;
+}

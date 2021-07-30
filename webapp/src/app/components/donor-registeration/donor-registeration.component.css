@@ -1,0 +1,42 @@
+/* .form-control.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.form-control.ng-touched.ng-valid {
+    border: 1px solid green;
+} */
+
+.mat-error {
+    font-size: 10px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.top-padding {
+    padding-top: 3px;
+}
+
+.margin-left mat-radio-button:not(:first-child) {
+    margin-left: 10px;
+}
+
+.form-container {
+    margin: 100px;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: 0 14px 20px -6px rgba(20, 160, 157, 0.85);
+}
+.mat-error {
+    font-size: 10px;
+}
+
+.mat-card {
+    width: fit-content;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,101 @@
+<div class="card my-4 mx-4" style="width: 370px;">
+    <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item mr-2" *ngIf="!connected">
+                <input id="message1" name="message" type="text" [(ngModel)]="message.username" placeholder="Insert your usernmae..." class="form-control">
+            </li>
+            <li class="nav-item mr-2" *ngIf="!connected">
+                <input id="message2" name="message" type="text" [(ngModel)]="messageto" placeholder="Insert your usernmae..." class="form-control">
+            </li>
+            <li class="nav-item mr-2" *ngIf="!connected">
+                <button [disabled]="!message.username" class="btn btn-success" (click)="connect()">Connect</button>
+            </li>
+            <li class="nav-item" *ngIf="connected">
+                <button class="btn btn-warning" (click)="disconnect()">Disconnect</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-4">
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border fullborder">
+                        <h3 class="box-title"><button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts"> <i class="fa fa-comments"></i></button>Chat Message</h3>
+                        <div class="box-tools pull-right">
+                            <div class="box-tools pull-right"> <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i> </button> </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="direct-chat-messages">
+                                <div *ngIf="connected">
+                                    <div class="direct-chat-msg" *ngFor="let m of messages">
+                                        <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">{{m.username}}</span> <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                            alt="message user image">
+                                        <div class="direct-chat-text">
+                                            <span *ngIf="m.type == 'MESSAGE'" [ngStyle]="{'color': m.color}"> </span> {{m.message}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer" *ngIf="connected">
+                            <form action="#" method="post">
+                                <div class="input-group">
+                                    <input name="message" autocomplete="off" type="text" [(ngModel)]="messgaeTyped" placeholder="Type Message ..." class="form-control">
+                                    <span class="input-group-btn"> 
+                    <button type="button" class="btn btn-warning btn-flat" [disabled]="!messgaeTyped" (click)="send()">Send</button> 
+                </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-4">
+                <div class="box box-warning direct-chat direct-chat-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Chat Messages</h3>
+                        <div class="box-tools pull-right"> <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="3 New Messages"></span> <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button> <button type="button"
+                                class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts"> <i class="fa fa-comments"></i></button> <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i> </button>                            </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="direct-chat-messages">
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">Timona Siera</span> <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                                <div class="direct-chat-text"> For what reason would it be advisable for me to think about business content? </div>
+                            </div>
+                            <div class="direct-chat-msg right">
+                                <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-right">Sarah Bullock</span> <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/office/36/000000/person-female.png"
+                                    alt="message user image">
+                                <div class="direct-chat-text"> Thank you for your believe in our supports </div>
+                            </div>
+                            <div class="direct-chat-msg">
+                                <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">Timona Siera</span> <span class="direct-chat-timestamp pull-right">23 Jan 5:37 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                    alt="message user image">
+                                <div class="direct-chat-text"> For what reason would it be advisable for me to think about business content? </div>
+                            </div>
+                            <div class="direct-chat-msg right">
+                                <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-right">Sarah Bullock</span> <span class="direct-chat-timestamp pull-left">23 Jan 6:10 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/office/36/000000/person-female.png"
+                                    alt="message user image">
+                                <div class="direct-chat-text"> I would love to. </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <form action="#" method="post">
+                            <div class="input-group"> <input type="text" name="message" placeholder="Type Message ..." class="form-control"> <span class="input-group-btn"> <button type="button" class="btn btn-warning btn-flat">Send</button> </span> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

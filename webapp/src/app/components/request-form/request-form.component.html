@@ -1,0 +1,133 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2" style="margin-top: 10px;" *ngIf="!condition;">
+  
+        <form [formGroup]="patientForm" class="form-container" (ngSubmit)="onSubmit()">
+          <mat-card>
+            <mat-card-content>
+  
+              <div class="mt-3">
+                <mat-form-field class="full-width">
+                  <input formControlName="name" matInput placeholder="Enter the full name">
+                  <mat-error *ngIf="name.invalid && name.touched">
+                    {{errors.name}}
+                  </mat-error>
+                </mat-form-field>
+  
+  
+              </div>
+              <div class="mt-3">
+                <label style="margin-bottom: 3px;">Gender</label>
+                <input id="male" style=" margin-left: 40px;" type="radio" formControlName="gender" name="gender"
+                  class="custom-control-input" value="male"><label style="margin-left: 5px;">Male</label>
+                <input id="female" style=" margin-left: 40px;" type="radio" formControlName="gender" name="gender"
+                  classs="custom-control-input" value="female"><label style="margin-left: 5px;">Female</label>
+              </div>
+              <div class="mt-2">
+                <mat-form-field class="full-width">
+                  <textarea formControlName="phoneNumber" matInput placeholder="Mobile number"></textarea>
+                  <mat-error *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                    {{errors.phoneNumber}}
+                  </mat-error>
+                </mat-form-field>
+  
+  
+              </div>
+              <div class="mt-2">
+                <mat-form-field class="full-width">
+                  <textarea formControlName="email" matInput placeholder="Email"></textarea>
+                  <mat-error *ngIf="email.invalid && email.touched">
+                    {{errors.email}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="mt-3">
+                <label style="margin-bottom: 3px;">Hospitalized</label>
+                <input id="yes" style=" margin-left: 30px;" type="radio" formControlName="hospitalized"
+                  name="hospitalized" class="custom-control-input" value="yes"><label
+                  style="margin-left: 5px;">Yes</label>
+                <input id="no" style=" margin-left: 30px;" type="radio" formControlName="hospitalized" name="hospitalized"
+                  class="custom-control-input" value="no"><label style="margin-left: 5px;">No</label>
+  
+              </div>
+              <div class="mt-2">
+                <mat-form-field class="full-width">
+                  <textarea formControlName="city" matInput placeholder="City"></textarea>
+                  <mat-error *ngIf="city.invalid && city.touched">
+                    {{errors.city}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+  
+  
+  
+               <div class="card-header">Your Requirment</div>
+              <div class="card-body" formArrayName="requirement">
+                <div class="row">
+                  <div  *ngFor="let contact of contactFormGroup.controls; let i = index;">
+                    <div [formGroupName]="i" class="row">
+                      <div class="mt-2">
+                        <input class="form-control" formControlName="requirementName" type="text" placeholder="Beds/Oxygen/Medicine/Ventilators">
+                        <span class="text-danger" *ngIf="getContactsFormGroup(i).controls['requirementName'].touched && getContactsFormGroup(i).controls['requirementName'].hasError('required')">
+                          please fill the form </span>
+                      </div>
+                      
+    
+                      <div class="mt-2">
+                        <input formControlName="quantity" type="number" placeholder="Quantity">
+                        <span class="text-danger" *ngIf="getContactsFormGroup(i).controls['quantity'].touched && getContactsFormGroup(i).controls['quantity'].hasError('required')">
+                         Quantity is required</span>
+                      </div>
+  
+                      <div class="mt-2">
+                          <input class="form-control" formControlName="unitOfMeasure" type="text" placeholder="Bottle/Cylinders/Sheets">
+                          <span class="text-danger" *ngIf="getContactsFormGroup(i).controls['unitOfMeasure'].touched && getContactsFormGroup(i).controls['unitOfMeasure'].hasError('required')">
+                            Units is reuired </span>
+                        </div>
+                      <div class="mt-2">
+                        <button style=" float: right;"class="btn btn-success btn-sm" type="button" (click)="removeRequest(i)"> <i style = "padding: 5px;" class="fas fa-trash-alt"></i> </button>
+                      
+                        <button style="margin-right: 20px;float: right; "class="btn btn-success btn-sm" type="button" (click)="addRequest()"><i style = "padding: 5px;"class="fas fa-plus"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+  
+              <div class=mt-2>
+              
+                <div class="card-header">Upload Prescription</div>
+                <div class="row mt-3">
+  
+                  <div class="col-ms-6 mb-3 mr-3">
+  
+                    <input type="file" (change)="onFileChanged($event)" formControlName="uploadPrescription">
+                    <input type="button" (click)="onUpload()" value="Upload File">
+  
+                  </div>
+  
+                 
+  
+                </div>
+              </div>
+            </mat-card-content>
+            <div class="mt-3">
+              <button id="btnsubmit" class="btn btn-success"
+                style="margin-left: 200px; margin-bottom: 10px;">Submit</button>
+            </div>
+          </mat-card>
+        </form>
+      </div>
+  
+  
+  
+      <div class="mt-3" style="justify-content: center;" *ngIf="condition;">
+        <mat-card class="example-card">
+          <mat-card-content style="margin-top: 30px;">
+            <h3 style="color:green">Your request is sent Sucessfully.Your Requirment will be Proceed Soon .Stay Safe</h3>
+          </mat-card-content>
+        </mat-card>
+  
+      </div>
+    </div>
+  </div>

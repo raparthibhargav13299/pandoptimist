@@ -1,0 +1,24 @@
+
+.example-spacer {
+
+    flex: 1 1 auto;
+  }
+  .mat-toolbar.mat-primary {
+    background: rgb(20,160,157,0.85);
+    color: #fff;
+  }
+
+  .mat-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000;
+}
+
+.sos{
+  margin-right: 5px;
+}
+.home{
+  color: white;
+  text-decoration: none;
+}

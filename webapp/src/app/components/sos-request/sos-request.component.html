@@ -1,0 +1,62 @@
+<!-- <div *ngIf="alertMsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Closed11!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+
+<div class="cardContainer">
+
+    <mat-card class="example-card" *ngIf="myRequest.id==null">
+        <mat-card-header>
+            <mat-card-title class="Notetitle">{{myRequest.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="cardText">
+          <p>No Open Requests currently!!!</p>
+          <p>Come back after someTime</p>
+        </mat-card-content>
+    </mat-card>
+
+
+
+
+    <mat-card class="example-card" *ngIf="myRequest.id!=null">
+        <mat-card-header>
+            <mat-card-title class="Notetitle">{{myRequest.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="cardText">
+            <p>
+                Phone: {{myRequest.phoneNumber}}
+            </p>
+            <p>
+                Gender: {{myRequest.gender}}
+            </p>
+            <p>
+               Email: {{myRequest.email}}
+            </p>
+            <p>
+                Hospitalized: {{myRequest.hospitalized}}
+            </p>
+            <p>
+               City: {{myRequest.city}}
+            </p>
+            <p >
+                Requirment is: {{myRequest.requirement[0].requirementName}}
+            </p>
+        </mat-card-content>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Leave a comment</mat-label>
+            <textarea [(ngModel)]="comments" name="comments" matInput placeholder="Ex. It makes me feel..."></textarea>
+          </mat-form-field>
+        <div class="example-button-row">
+       
+            <button mat-raised-button color="primary" (click)="closeRequest()">Close Request</button>
+            <button mat-raised-button color="primary" (click)="PassRequest()">Pass Request</button>
+          </div>
+    </mat-card>
+    <div>
+        <app-search-resource></app-search-resource>
+    </div>
+</div>
+

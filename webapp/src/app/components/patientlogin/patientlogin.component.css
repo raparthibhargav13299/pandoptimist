@@ -1,0 +1,39 @@
+.border{
+    border: 5px solid #14A09D;
+    border-radius: 8px;
+    padding: 20px 5px 20px 5px;
+}
+
+.color{
+    background-color: rgba(20,160,157,0.85);
+}
+
+
+.container{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    text-decoration-line: underline;
+}
+.bt-border{
+    border: 2px solid #14A09D;
+}
+
+.otp-bt{
+    margin-left: 10px;
+    padding-bottom: -10px;
+}
+
+.alert-green{
+    color: green;
+    margin-top: -20px;
+}
+
+.alert-red{
+    color: red;
+    margin-top: -20px;
+
+}

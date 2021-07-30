@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <form class="form-container">
+      <mat-card class="border form">
+        <div style="text-align: center;">
+          <mat-card-title class="title">Search Resource.....</mat-card-title>
+        </div>
+        <mat-card-content>
+          <div class="row">
+            <mat-form-field style="width:300px;" appearance="fill">
+              <mat-label>Enter Requirment name</mat-label>
+              <input matInput placeholder="Eg: Dolo" [(ngModel)]="resourceName" [ngModelOptions]="{standalone:true}"
+                >
+              <!-- <mat-error *ngIf="email.dirty && email.invalid">Valid Email is required.</mat-error> -->
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field style="width:300px;" appearance="fill">
+              <mat-label>Enter City</mat-label>
+              <input matInput placeholder="city" [(ngModel)]="cityName" [ngModelOptions]="{standalone:true}">
+              <!-- <mat-error *ngIf="password.dirty && password.invalid">Atleast 8 characters are required</mat-error> -->
+            </mat-form-field>
+          </div>
+          <button type="button" style="margin-top: 5px;" mat-raised-button class="color"
+            (click)="search()">Search</button>
+          <!-- <div *ngIf="success" class="alert alert-success" role="alert">
+            <strong>Successfully Loggedin.<br></strong> 
+            Redirecting to your page...
+          </div>
+          <div *ngIf="invalidform" class="alert alert-danger" role="alert">
+            <strong>Enter valid credentials!<br></strong>
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  <div class="cardContainer">
+    <mat-card class="example-card" *ngFor="let result of resultArray">
+      <mat-card-header>
+        <mat-card-title class="Notetitle">{{"Search Results"}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="cardText">
+       
+        
+        <p> Hello ,</p>
+        <p> The requested resource <b>{{result.type}}</b> is available. </p>
+        <p> Kindly contact Mr/Mrs <b>{{result.contactPersonName}} Ph: {{result.contactMobileNumber}}</b></p>
+        <p>Address:{{result.address}}.</p>
+        <p>Thanks for contacting us. <br>  Get well soon... Stay Safe!!!</p>
+          <!-- The requested resource {{result.type}} is available. 
+          Kindly contact Mr/Mrs {{result.contactPersonName}} Ph: {{result.contactMobileNumber}}
+          Address:{{result.address}}. Thanks for contacting us.
+
+          Get well soon... Stay Safe!!! -->
+        <!-- </p> -->
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+<div *ngIf="resultArray.length==0">
+  <strong>No Resource found!!!</strong>
+</div>

@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row">
+        <div class="mt-4 col-sm-3" *ngFor="let doctor of pageSlice">
+            <mat-card class="example-card">
+
+                <div>
+                    <img mat-card-image class="surgeon" src="/assets/doctor.svg" alt="Doctor Image">
+                </div>
+                <mat-card-header>
+                    <mat-card-title>{{doctor.name }}<i class="fas fa-check-circle dot"></i></mat-card-title>
+                </mat-card-header>
+
+                <mat-card-actions>
+                    <button (click)="connectAvilable(doctor)" mat-button class="connect-bt">Connect</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <mat-paginator class="mt-2" [length]="this.doctorsOnline.length" [pageSize]="16" [pageSizeOptions]="[ 4,8,16, 32, 64,100]" (page)="onPageChange($event)">
+        </mat-paginator>
+
+    </div>
+
+
+
+    <div class="col-md-4 mt-4 offset-md-3" *ngIf="Display;">
+        <h3>No Doctor is available at this moment, please come back after a while.</h3>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- ///doctor consulation chat bot -->
+<div>
+    <!-- <div class="card my-4 mx-4" style="width: 370px;">
+        <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item mr-2" *ngIf="!connected">
+                    <input id="message1" name="message" type="text" [(ngModel)]="message.username" placeholder="Insert your usernmae..." class="form-control">
+                </li>
+                <li class="nav-item mr-2" *ngIf="!connected">
+                    <input id="message2" name="message" type="text" [(ngModel)]="messageto" placeholder="Insert your usernmae..." class="form-control">
+                </li>
+                <li class="nav-item mr-2" *ngIf="!connected">
+                    <button [disabled]="!message.username" class="btn btn-success" (click)="connect()">Connect</button>
+                </li>
+                <li class="nav-item" *ngIf="connected">
+                    <button class="btn btn-warning" (click)="disconnect()">Disconnect</button>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-4">
+                    <div class="box box-warning direct-chat direct-chat-warning">
+                        <div class="box-header with-border fullborder">
+                            <h3 class="box-title"><button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts"> <i class="fa fa-comments"></i></button>Chat Message</h3>
+                            <div class="box-tools pull-right">
+                                <div class="box-tools pull-right"> <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i> </button> </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="direct-chat-messages">
+                                    <div>
+                                        <div class="direct-chat-msg" *ngFor="let m of messages">
+                                            <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">{{m.username}}</span> <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span> </div> <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png"
+                                                alt="message user image">
+                                            <div class="direct-chat-text">
+                                                <span *ngIf="m.type == 'MESSAGE'" [ngStyle]="{'color': m.color}"> </span> {{m.message}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-footer" >
+                                <form action="#" method="post">
+                                    <div class="input-group">
+                                        <input name="message" autocomplete="off" type="text" [(ngModel)]="messgaeTyped" placeholder="Type Message ..." class="form-control">
+                                        <span class="input-group-btn"> 
+                        <button type="button" class="btn btn-warning btn-flat" [disabled]="!messgaeTyped" (click)="send()">Send</button> 
+                    </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
